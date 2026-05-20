@@ -455,7 +455,7 @@ alongside its original CMake build.
 
 ## Local divergence from `main`
 
-The SwiftPM package is built **additively** — no existing `.cpp` or `.h`
+The SwiftPM package is built **additively** — no upstream `.cpp` or `.h`
 file is moved or edited. Divergence from `main` is:
 
 - `Package.swift`, `UPSTREAM.md`, `.gitignore` (build-dir entries) and

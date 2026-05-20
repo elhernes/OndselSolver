@@ -76,6 +76,8 @@ let package = Package(
         .target(
             name: "OndselSolverCxx",
             path: "OndselSolver",
+            // publicHeadersPath "." keeps the flat upstream layout intact —
+            // every header sits beside its source; see docs/superpowers/.
             publicHeadersPath: "."
         ),
     ],
@@ -157,6 +159,8 @@ let package = Package(
         .target(
             name: "OndselSolverCxx",
             path: "OndselSolver",
+            // publicHeadersPath "." keeps the flat upstream layout intact —
+            // every header sits beside its source; see docs/superpowers/.
             publicHeadersPath: "."
         ),
         .executableTarget(
@@ -261,6 +265,8 @@ let package = Package(
         .target(
             name: "OndselSolverCxx",
             path: "OndselSolver",
+            // publicHeadersPath "." keeps the flat upstream layout intact —
+            // every header sits beside its source; see docs/superpowers/.
             publicHeadersPath: "."
         ),
         .target(
@@ -354,6 +360,8 @@ let package = Package(
         .target(
             name: "OndselSolverCxx",
             path: "OndselSolver",
+            // publicHeadersPath "." keeps the flat upstream layout intact —
+            // every header sits beside its source; see docs/superpowers/.
             publicHeadersPath: "."
         ),
         .target(

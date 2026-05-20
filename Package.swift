@@ -30,6 +30,12 @@ let package = Package(
             dependencies: ["OndselSolverCxx"],
             path: "Sources/ondselsolver-smoke"
         ),
+        .testTarget(
+            name: "OndselSolverTests",
+            dependencies: ["OndselSolverCxx"],
+            path: "Tests/OndselSolverTests",
+            swiftSettings: [.interoperabilityMode(.Cxx)]
+        ),
     ],
     cxxLanguageStandard: .cxx17
 )

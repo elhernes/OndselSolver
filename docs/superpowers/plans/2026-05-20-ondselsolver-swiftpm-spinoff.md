@@ -31,7 +31,7 @@ Files created or modified by this plan, and what each is responsible for:
 | `UPSTREAM.md` | Create | Provenance: upstream repo, fork, branch base commit, re-sync recipe. |
 | `README.md` | Modify | Note the SwiftPM package alongside the existing CMake build. |
 
-Untouched: `CMakeLists.txt`, `OndselSolver/OndselSolver/*.cpp` and `*.h`, `OndselSolverMain/`, `tests/`, `testapp/`.
+Untouched: `CMakeLists.txt`, `OndselSolver/*.cpp` and `*.h`, `OndselSolverMain/`, `tests/`, `testapp/`.
 
 ---
 

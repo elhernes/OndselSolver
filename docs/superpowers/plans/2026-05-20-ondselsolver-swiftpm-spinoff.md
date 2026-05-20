@@ -24,7 +24,7 @@ Files created or modified by this plan, and what each is responsible for:
 |---|---|---|
 | `.gitignore` | Modify | Ignore SwiftPM build directories. |
 | `Package.swift` | Create | The package manifest — declares targets, products, platforms, C++ standard. |
-| `OndselSolver/OndselSolver/module.modulemap` | Create | Curated Clang module map exposing `ASMTAssembly.h` as the `OndselSolverCxx` module. The only file added inside upstream's source tree. |
+| `OndselSolver/module.modulemap` | Create | Curated Clang module map exposing `ASMTAssembly.h` as the `OndselSolverCxx` module. The only file added inside upstream's source tree. |
 | `Sources/OndselSolver/OndselSolver.swift` | Create | Placeholder Swift facade — compiles, imports the C++ module, no public API yet. |
 | `Sources/ondselsolver-smoke/main.cpp` | Create | C++ executable that builds and solves a model in code — proves the C++ library links. |
 | `Tests/OndselSolverTests/OndselSolverSmokeTests.swift` | Create | Swift test that calls the solver across the C++ interop boundary. |
@@ -75,7 +75,7 @@ let package = Package(
     targets: [
         .target(
             name: "OndselSolverCxx",
-            path: "OndselSolver/OndselSolver",
+            path: "OndselSolver",
             publicHeadersPath: "."
         ),
     ],
@@ -156,7 +156,7 @@ let package = Package(
     targets: [
         .target(
             name: "OndselSolverCxx",
-            path: "OndselSolver/OndselSolver",
+            path: "OndselSolver",
             publicHeadersPath: "."
         ),
         .executableTarget(
@@ -196,13 +196,13 @@ EOF
 Adds the hand-written module map and the placeholder Swift facade target. Building the Swift facade exercises `import OndselSolverCxx`, which forces Clang to compile the curated module — this is what verifies the module map.
 
 **Files:**
-- Create: `OndselSolver/OndselSolver/module.modulemap`
+- Create: `OndselSolver/module.modulemap`
 - Create: `Sources/OndselSolver/OndselSolver.swift`
 - Modify: `Package.swift`
 
 - [ ] **Step 1: Create the curated module map**
 
-Create `OndselSolver/OndselSolver/module.modulemap`:
+Create `OndselSolver/module.modulemap`:
 
 ```modulemap
 // ONDSEL-LOCAL: SwiftPM module map — the only file added inside
@@ -260,7 +260,7 @@ let package = Package(
     targets: [
         .target(
             name: "OndselSolverCxx",
-            path: "OndselSolver/OndselSolver",
+            path: "OndselSolver",
             publicHeadersPath: "."
         ),
         .target(
@@ -287,7 +287,7 @@ Expected: SwiftPM builds `OndselSolverCxx`, then builds the `OndselSolver` Swift
 - [ ] **Step 5: Commit**
 
 ```bash
-git add Package.swift OndselSolver/OndselSolver/module.modulemap Sources/OndselSolver/OndselSolver.swift
+git add Package.swift OndselSolver/module.modulemap Sources/OndselSolver/OndselSolver.swift
 git commit -m "$(cat <<'EOF'
 Add module map and placeholder Swift facade
 
@@ -353,7 +353,7 @@ let package = Package(
     targets: [
         .target(
             name: "OndselSolverCxx",
-            path: "OndselSolver/OndselSolver",
+            path: "OndselSolver",
             publicHeadersPath: "."
         ),
         .target(
@@ -455,7 +455,7 @@ file is moved or edited. Divergence from `main` is:
 - `Sources/` and `Tests/` — the placeholder Swift facade, the C++ smoke
   executable, and the interop smoke test.
 - `docs/superpowers/` — the design spec and implementation plan.
-- `OndselSolver/OndselSolver/module.modulemap` — the **only** file added
+- `OndselSolver/module.modulemap` — the **only** file added
   inside upstream's source tree, marked with an `ONDSEL-LOCAL:` comment.
 
 ## Re-syncing with upstream

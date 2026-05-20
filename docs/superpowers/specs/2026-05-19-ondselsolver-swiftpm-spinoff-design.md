@@ -90,11 +90,10 @@ deps/OndselSolver/                    (existing repo, branch: swiftpm)
   OndselSolverMain/                   keep — CMake-only standalone exe
   tests/                              keep — CMake-only gtest suite
   testapp/                            keep — CMake test data
-  OndselSolver/
+  OndselSolver/                       the C++ library source
     CMakeLists.txt                    keep — CMake-only
-    OndselSolver/                     the C++ library source
-      *.cpp  *.h     (~318 + ~316 files, flat)   UNTOUCHED
-      module.modulemap                NEW — curated module map
+    *.cpp  *.h     (~316 + ~318 files, flat)   UNTOUCHED
+    module.modulemap                  NEW — curated module map
   Sources/
     OndselSolver/
       OndselSolver.swift              NEW — placeholder Swift facade
@@ -113,7 +112,7 @@ Two library products, mirroring the planegcs package:
 
 | Target | Kind | Path | Role |
 |---|---|---|---|
-| `OndselSolverCxx` | C++ library | `OndselSolver/OndselSolver` | The real artifact. Compiles the flat source. |
+| `OndselSolverCxx` | C++ library | `OndselSolver` | The real artifact. Compiles the flat source. |
 | `OndselSolver` | Swift library | `Sources/OndselSolver` | Placeholder Swift facade. Depends on `OndselSolverCxx`. |
 | `ondselsolver-smoke` | C++ executable | `Sources/ondselsolver-smoke` | C++ link/run verification. Depends on `OndselSolverCxx`. |
 | `OndselSolverTests` | Swift test | `Tests/OndselSolverTests` | Swift/C++ interop verification. Depends on `OndselSolverCxx`. |
@@ -122,7 +121,7 @@ Products: `.library("OndselSolverCxx", …)` and `.library("OndselSolver", …)`
 
 ### `OndselSolverCxx` — the C++ library target
 
-- `path: "OndselSolver/OndselSolver"` — points at the existing flat
+- `path: "OndselSolver"` — points at the existing flat
   source directory; no files move.
 - Sources are auto-discovered (all `.cpp` in that directory).
 - `publicHeadersPath: "."` — the source directory doubles as the public
@@ -151,7 +150,7 @@ Products: `.library("OndselSolverCxx", …)` and `.library("OndselSolver", …)`
 ## The module map
 
 `OndselSolverCxx` ships a **hand-written `module.modulemap`** at
-`OndselSolver/OndselSolver/module.modulemap` (the publicHeadersPath
+`OndselSolver/module.modulemap` (the publicHeadersPath
 root, where SwiftPM looks for a custom module map).
 
 Rationale: with `publicHeadersPath: "."` and no custom map, SwiftPM

@@ -1,0 +1,9 @@
+// ONDSEL-LOCAL: SwiftPM module map — the only file added inside
+// upstream's source tree. Exposes a curated entry point for Swift/C++
+// interop. Widen the header list as the Swift facade needs more of the
+// solver surface; see docs/superpowers/specs/.
+module OndselSolverCxx {
+    requires cplusplus
+    header "ASMTAssembly.h"
+    export *
+}

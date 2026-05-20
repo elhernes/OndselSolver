@@ -8,6 +8,7 @@ let package = Package(
         .iOS(.v16),
     ],
     products: [
+        .library(name: "OndselSolver", targets: ["OndselSolver"]),
         .library(name: "OndselSolverCxx", targets: ["OndselSolverCxx"]),
     ],
     targets: [
@@ -17,6 +18,12 @@ let package = Package(
             // publicHeadersPath "." keeps the flat upstream layout intact —
             // every header sits beside its source; see docs/superpowers/.
             publicHeadersPath: "."
+        ),
+        .target(
+            name: "OndselSolver",
+            dependencies: ["OndselSolverCxx"],
+            path: "Sources/OndselSolver",
+            swiftSettings: [.interoperabilityMode(.Cxx)]
         ),
         .executableTarget(
             name: "ondselsolver-smoke",

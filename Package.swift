@@ -14,7 +14,14 @@ let package = Package(
         .target(
             name: "OndselSolverCxx",
             path: "OndselSolver",
+            // publicHeadersPath "." keeps the flat upstream layout intact —
+            // every header sits beside its source; see docs/superpowers/.
             publicHeadersPath: "."
+        ),
+        .executableTarget(
+            name: "ondselsolver-smoke",
+            dependencies: ["OndselSolverCxx"],
+            path: "Sources/ondselsolver-smoke"
         ),
     ],
     cxxLanguageStandard: .cxx17

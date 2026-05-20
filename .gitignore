@@ -42,3 +42,10 @@ cmake-build-debug
 temp/
 /testapp/draggingBackhoe.log
 /testapp/runPreDragBackhoe.asmt
+
+# SwiftPM
+.build/
+.build-ios/
+.swiftpm/
+*.xcodeproj
+.DS_Store
